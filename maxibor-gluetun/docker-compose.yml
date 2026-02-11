@@ -1,0 +1,29 @@
+services:
+  server:
+    image: qmcgaw/gluetun:latest
+    # container_name: martinmeel-gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - "9091:9091"
+      - "51413:51413"
+      - "51413:51413/udp"
+    volumes:
+      - ${APP_DATA_DIR}/data:/gluetun
+    environment:
+      # ProtonVPN VPN Configuration
+      - VPN_SERVICE_PROVIDER=cyberghost
+      - VPN_TYPE=openvpn
+      - CYBERGHOST_USERNAME=${CYBERGHOST_USERNAME}
+      - CYBERGHOST_PASSWORD=${CYBERGHOST_PASSWORD}
+      - OPENVPN_CERT=${OPENVPN_CERT}
+      - OPENVPN_KEY=${OPENVPN_KEY}
+      - SERVER_COUNTRIES=${SERVER_COUNTRIES}
+      # Enble Control server
+      - HTTP_CONTROL_SERVER_ADDRESS:8000
+      - HTTP_CONTROL_SERVER_LOG=on
+      - TZ=Europe/Amsterdam
+    restart: unless-stopped
+    stop_grace_period: 1m
