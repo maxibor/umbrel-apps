@@ -1,0 +1,33 @@
+manifestVersion: 1
+id: maxibor-sonarr
+category: multimedia
+name: 2.1.Sonarr
+version: "4.0.16"
+tagline: Smart PVR for TV shows
+icon: https://raw.githubusercontent.com/maxibor/umbrel-app-gallery/main/maxibor-sonarr/icon.svg
+description: >-
+  Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes
+  of your favorite shows and will grab, sort and rename them. It can also be configured to automatically
+  upgrade the quality of files already downloaded when a better quality format becomes available.
+  
+  ⚠️ This version routes all traffic through Gluetun VPN for privacy and security.
+
+developer: Sonarr Team
+website: https://sonarr.tv
+dependencies: [] #If you enable this, Sonarr will only install if Gluetun is installed. Also if you want to uninstall, Gluetun has to be uninstalled first!!!
+  #- maxibor-gluetun
+repo: https://github.com/Sonarr/Sonarr
+support: https://forums.sonarr.tv
+port: 8989
+gallery:
+  - https://raw.githubusercontent.com/MartinMeel/umbrel-app-gallery/main/MartinMeel-sonarr/1.jpg
+  - https://raw.githubusercontent.com/MartinMeel/umbrel-app-gallery/main/MartinMeel-sonarr/2.jpg
+  - https://raw.githubusercontent.com/MartinMeel/umbrel-app-gallery/main/MartinMeel-sonarr/3.jpg
+releaseNotes: >-
+  Sonarr configured to route through Gluetun VPN container
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+submitter: maxibor
+submission: https://github.com/getumbrel/umbrel-apps
+torOnly: false
