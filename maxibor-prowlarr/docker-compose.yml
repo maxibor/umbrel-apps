@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: maxibor-gluetun_server_1
+      APP_PORT: 9696
+      # Use this if another app outside your umbrel device wants to connect via an API call
+      #PROXY_AUTH_WHITELIST: /api/*
+      # Set false if another app from outside your umbrell wants to connect without login!
+      PROXY_AUTH_ADD: 'false'
+
+  server:
+    image: linuxserver/prowlarr:version-2.3.0.5236@sha256:484784daaf4c081e55c608de256870184d283762e1b64e8105af487b1510fc4a
+    network_mode: "container:maxibor-gluetun_server_1"
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/config
+      - ${UMBREL_ROOT}/data/storage/downloads:/downloads
+    restart: on-failure
