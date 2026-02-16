@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   app_proxy:
     environment:
@@ -18,5 +16,6 @@ services:
       - PGID=1000
     volumes:
       - ${APP_DATA_DIR}/data/config:/config
-      - ${UMBREL_ROOT}/data/storage/downloads:/downloads
+      - ${UMBREL_ROOT}/home/Downloads/complete:/downloads
+      - ${UMBREL_ROOT}/home/Downloads/shows:/shows
     restart: on-failure
