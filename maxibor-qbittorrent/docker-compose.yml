@@ -3,15 +3,15 @@ services:
     environment:
       APP_HOST: maxibor-gluetun_server_1
       APP_PORT: 8090
-      # Use this else you won't be able to connect from outside your umbrell!
       PROXY_AUTH_WHITELIST: "*"
-      # Set false if another app from outside your umbrell wants to connect without login in!
       PROXY_AUTH_ADD: 'false'
-      
+
   server:
     image: lscr.io/linuxserver/qbittorrent:latest
-    # Use Gluetun's network stack - all traffic goes through VPN
     network_mode: "container:maxibor-gluetun_server_1"
+    depends_on:
+      maxibor-gluetun_server_1:        # 👈 wait for Gluetun to be healthy first
+        condition: service_healthy
     volumes:
       - ${APP_DATA_DIR}/data/config:/config
       - ${UMBREL_ROOT}/home/Downloads/complete:/downloads
@@ -20,7 +20,15 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Amsterdam
-      - WEBUI_PORT=8090 # DoNot remove. If removed you will not be able to connect via the app proxy.
-    mem_limit: 2g # use a memory limit to prevent OOM issues.
+      - WEBUI_PORT=8090
+    labels:
+      - "autoheal=true"               # 👈 watched by autoheal
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8090"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    mem_limit: 2g
     restart: unless-stopped
     stop_grace_period: 1m

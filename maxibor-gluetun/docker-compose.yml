@@ -1,7 +1,6 @@
 services:
   server:
     image: qmcgaw/gluetun:latest
-    # container_name: martinmeel-gluetun
     cap_add:
       - NET_ADMIN
     devices:
@@ -13,7 +12,7 @@ services:
     volumes:
       - ${APP_DATA_DIR}/data:/gluetun
     environment:
-      # ProtonVPN VPN Configuration
+      # CyberGhost VPN Configuration
       - VPN_SERVICE_PROVIDER=cyberghost
       - VPN_TYPE=openvpn
       - OPENVPN_USER=${CYBERGHOST_USERNAME}
@@ -21,9 +20,27 @@ services:
       - OPENVPN_CERT=${OPENVPN_CERT}
       - OPENVPN_KEY=${OPENVPN_KEY}
       - SERVER_COUNTRIES=${SERVER_COUNTRIES}
-      # Enble Control server
-      - HTTP_CONTROL_SERVER_ADDRESS:8000
+      # Enable Control server
+      - HTTP_CONTROL_SERVER_ADDRESS=:8000  # 👈 fixed: = not :
       - HTTP_CONTROL_SERVER_LOG=on
       - TZ=Europe/Amsterdam
+    labels:
+      - "autoheal=true"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8000/v1/openvpn/status"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     restart: unless-stopped
     stop_grace_period: 1m
+
+  autoheal:
+    image: willfarrell/autoheal:latest
+    restart: always
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=autoheal  # only watch containers with this label
+      - AUTOHEAL_INTERVAL=30               # check every 30 seconds
+      - AUTOHEAL_DEFAULT_STOP_TIMEOUT=10   # wait 10s before force-killing on restart
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

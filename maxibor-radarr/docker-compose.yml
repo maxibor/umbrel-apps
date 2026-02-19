@@ -4,12 +4,14 @@ services:
       APP_HOST: maxibor-gluetun_server_1
       APP_PORT: 7878
       PROXY_AUTH_WHITELIST: /api/*
-      # Set false if another app from outside your umbrell wants to connect without login!
       PROXY_AUTH_ADD: 'false'
 
   server:
     image: linuxserver/radarr:6.0.4@sha256:06ac318ecb95a34c7b229568dcb4271f02cb5007bb189a0dd67a2032864187ca
     network_mode: "container:maxibor-gluetun_server_1"
+    depends_on:
+      maxibor-gluetun_server_1:        # 👈 wait for Gluetun to be healthy first
+        condition: service_healthy
     environment:
       - PUID=1000
       - PGID=1000
@@ -17,4 +19,13 @@ services:
       - ${APP_DATA_DIR}/data/config:/config
       - ${UMBREL_ROOT}/home/Downloads/complete:/downloads
       - ${UMBREL_ROOT}/home/Downloads/movies:/movies
-    restart: on-failure
+    labels:
+      - "autoheal=true"               # 👈 watched by autoheal
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:7878/api/v1/health?apikey=${RADARR_API_KEY}"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+    stop_grace_period: 1m
