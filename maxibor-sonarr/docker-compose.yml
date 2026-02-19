@@ -9,9 +9,6 @@ services:
   server:
     image: linuxserver/sonarr:4.0.16@sha256:4b8a853b76337cd5de5f69961e23b7d0792ce7bf0a8be083dd7202ef670bfc34
     network_mode: "container:maxibor-gluetun_server_1"
-    depends_on:
-      maxibor-gluetun_server_1:        # 👈 wait for Gluetun to be healthy first
-        condition: service_healthy
     environment:
       - PUID=1000
       - PGID=1000
@@ -19,13 +16,5 @@ services:
       - ${APP_DATA_DIR}/data/config:/config
       - ${UMBREL_ROOT}/home/Downloads/complete:/downloads
       - ${UMBREL_ROOT}/home/Downloads/shows:/shows
-    labels:
-      - "autoheal=true"               # 👈 watched by autoheal
-    healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8989/api/v1/health?apikey=${SONARR_API_KEY}"]
-      interval: 1m
-      timeout: 10s
-      retries: 3
-      start_period: 30s
     restart: unless-stopped
     stop_grace_period: 1m
