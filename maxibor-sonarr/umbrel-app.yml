@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: maxibor-sonarr
 category: media
 name: Sonarr
-version: "4.0.16.2944b"
+version: "4.0.16.2944c"
 icon: https://raw.githubusercontent.com/getumbrel/umbrel-apps-gallery/refs/heads/master/sonarr/icon.svg
 tagline: Smart PVR for newsgroup and bittorrent users
 description: >-

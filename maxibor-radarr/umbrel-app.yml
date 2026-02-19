@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: maxibor-radarr
 category: media
 name: Radarr
-version: "6.0.4.10291b"
+version: "6.0.4.10291c"
 icon: https://raw.githubusercontent.com/getumbrel/umbrel-apps-gallery/refs/heads/master/radarr/icon.svg
 tagline: Your movie collection manager
 description: >-

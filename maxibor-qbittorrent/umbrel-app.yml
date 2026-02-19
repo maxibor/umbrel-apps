@@ -4,7 +4,7 @@ name: 3.1 qBittorrent
 tagline: Free and reliable P2P BitTorrent client
 icon: https://raw.githubusercontent.com/MartinMeel/umbrel-app-gallery/main/martinmeel-qbittorrent/icon.svg
 category: download
-version: "5.1.4"
+version: "5.1.4b"
 port: 8090
 description: >-
   qBittorrent is a cross-platform free and open-source BitTorrent client
