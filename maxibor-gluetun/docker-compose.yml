@@ -25,23 +25,5 @@ services:
       - HTTP_CONTROL_SERVER_ADDRESS=:8000  # 👈 fixed: = not :
       - HTTP_CONTROL_SERVER_LOG=on
       - TZ=Europe/Amsterdam
-    labels:
-      - "autoheal=true"
-    healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8000/v1/openvpn/status"]
-      interval: 1m
-      timeout: 10s
-      retries: 3
-      start_period: 30s
     restart: unless-stopped
     stop_grace_period: 1m
-
-  autoheal:
-    image: willfarrell/autoheal:latest
-    restart: always
-    environment:
-      - AUTOHEAL_CONTAINER_LABEL=autoheal  # only watch containers with this label
-      - AUTOHEAL_INTERVAL=30               # check every 30 seconds
-      - AUTOHEAL_DEFAULT_STOP_TIMEOUT=10   # wait 10s before force-killing on restart
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
