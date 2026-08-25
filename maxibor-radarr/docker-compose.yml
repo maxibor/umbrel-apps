@@ -7,7 +7,7 @@ services:
       PROXY_AUTH_ADD: 'false'
 
   server:
-    image: linuxserver/radarr:6.0.4@sha256:06ac318ecb95a34c7b229568dcb4271f02cb5007bb189a0dd67a2032864187ca
+    image: linuxserver/radarr:6.3.0@sha256:2b2c1c05eb3f648d2c80dfab9486147dd7bb0ad4d77fa972fc1c5de8f1da3738
     network_mode: "container:maxibor-gluetun_server_1"
     environment:
       - PUID=1000

@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: maxibor-radarr
 category: media
 name: Radarr
-version: "6.0.4.10291c"
+version: "6.3.0.10514"
 icon: https://raw.githubusercontent.com/getumbrel/umbrel-apps-gallery/refs/heads/master/radarr/icon.svg
 tagline: Your movie collection manager
 description: >-
@@ -27,10 +27,11 @@ gallery:
   - https://raw.githubusercontent.com/getumbrel/umbrel-apps-gallery/master/radarr/3.jpg
 path: ""
 releaseNotes: >-
-  This update includes various improvements and bug fixes:
-    - Added support for private IPv6 networks
-    - Configured known networks to use standard private IP ranges at startup
-    - Fixed an issue with qBittorrent /login API success checks
+  This update brings Radarr to version 6.3.0.10514:
+    - Fixed importing new items from Simkl lists
+    - Updated FFProbe to 5.1.10
+    - Fixed custom formats with year for imported files
+    - Multiple translation, framework, and performance improvements
 
 
   Full release notes for Radarr are available at https://github.com/Radarr/Radarr/releases

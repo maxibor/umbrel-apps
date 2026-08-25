@@ -1,9 +1,9 @@
-manifestVersion: 1
+manifestVersion: 1.1
 id: maxibor-prowlarr
 category: media
 name: Prowlarr
 icon: https://raw.githubusercontent.com/getumbrel/umbrel-apps-gallery/refs/heads/master/prowlarr/icon.svg
-version: "2.3.0.5236-flaresolverr-b"
+version: "2.5.2.5491"
 tagline: Prowlarr is an indexer manager/proxy
 description: >-
   Prowlarr is an indexer manager/proxy built on the popular *arr .net/reactjs base stack to integrate with your various PVR apps.
@@ -36,7 +36,11 @@ path: ""
 defaultUsername: ""
 defaultPassword: ""
 releaseNotes: >-
-  This update bumps flaresolverr to version 3.4.6.
+  This update brings Prowlarr to version 2.5.2.5491, featuring:
+    - Fixed logging endpoint in Happy Eyeballs
+    - Improved size precision for parsing bytes across indexers
+    - Added new and updated indexers (DesiGaane, NZBIndex, IPTorrents, etc.)
+    - Multiple dependency, translation, and stability improvements
 
 
   Full release notes are found at https://github.com/Prowlarr/Prowlarr/releases

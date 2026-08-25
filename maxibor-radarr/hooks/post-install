@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if "${UMBREL_ROOT}/scripts/app" ls-installed | grep --quiet 'prowlarr'
+if "${UMBREL_ROOT}/scripts/app" ls-installed 2>/dev/null | grep -E --quiet '(prowlarr|maxibor-prowlarr)'
 then
  CONFIG_FILE="${APP_DATA_DIR}/data/config/config.xml"
 
@@ -12,7 +12,7 @@ then
      echo "config.xml file exists and <ApiKey> xml key exists..."
 
      # Restart Prowlarr to automatically set this up as an app
-     "${UMBREL_ROOT}/scripts/app" restart prowlarr
+     "${UMBREL_ROOT}/scripts/app" restart maxibor-prowlarr 2>/dev/null || "${UMBREL_ROOT}/scripts/app" restart prowlarr 2>/dev/null || true
 
      exit
    fi

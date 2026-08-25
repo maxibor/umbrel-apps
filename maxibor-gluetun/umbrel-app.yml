@@ -1,10 +1,10 @@
-manifestVersion: 1
+manifestVersion: 1.1
 id: maxibor-gluetun
 name: 1.0 Gluetun VPN
 tagline: Lightweight VPN client with support for multiple providers
 icon: https://raw.githubusercontent.com/MartinMeel/umbrel-app-gallery/main/martinmeel-gluetun/gluetun.svg
 category: networking
-version: "3.40.31c"
+version: "3.41.3"
 port: 8000
 description: >-
   Gluetun is a lightweight VPN client written in Go that supports multiple VPN providers
@@ -17,7 +17,7 @@ description: >-
   
   
   Key features:
-    - Support for multiple VPN providers (Windscribe, NordVPN, ExpressVPN, etc.)
+    - Support for multiple VPN providers (Windscribe, NordVPN, ExpressVPN, CyberGhost, etc.)
     - Built-in firewall with kill switch
     - DNS over TLS (DoT) support
     - HTTP proxy server
@@ -25,26 +25,24 @@ description: >-
     - Port forwarding support (provider dependent)
   
   ⚠️ IMPORTANT:
-    Before installing, make sure you have your ProtonVPN credentials ready. (Because i use protonvpn ;-) )
-    You'll need to add the PROTONVPN_PRIVATE_KEY in the exports.sh file.
-    !! Also if you want port forwarding, choose the private key belonging to the portforwarding setup in the protonvpn configurator
-    https://protonvpn.com/support/vpn-config-download/
+    Before installing, make sure you have your VPN credentials ready.
+    You'll need to configure credentials in the exports.sh file.
+    https://github.com/qdm12/gluetun-wiki
 
 
   🛠️ SET-UP INSTRUCTIONS
-    After installing Gluetun STOP the container and fill in the private key in the exports file!!!!
+    After installing Gluetun STOP the container and fill in your credentials in the exports file!
     ⚠️ NOTE: Please ssh into your umbrel or via the settings icon -> Advanced settings -> Terminal (open) to change the exports file.
 
 
   Logs:  
     ⚠️ NOTE: To follow the logs of the Gluetun container:
     Please ssh into your umbrel or via the settings icon -> Advanced settings -> Terminal (open)
-    - sudo docker logs -f martinmeel-gluetun_server_1
+    - sudo docker logs -f maxibor-gluetun_server_1
 
 
 releaseNotes: >-
-  Initial release with ProtonVPN support. Configured to allow other containers
-  route through the VPN connection.
+  Update Gluetun to v3.41.3 with upstream provider and security updates, updated server endpoints, and stability fixes.
 submitter: maxibor
 developer: qdm12
 website: https://github.com/qdm12/gluetun
@@ -54,4 +52,3 @@ support: https://github.com/qdm12/gluetun/issues
 gallery: []
 defaultUsername: ""
 defaultPassword: ""
-#torOnly: false #not needed.

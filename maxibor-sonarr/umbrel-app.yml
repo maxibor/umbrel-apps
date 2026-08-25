@@ -2,7 +2,7 @@ manifestVersion: 1.1
 id: maxibor-sonarr
 category: media
 name: Sonarr
-version: "4.0.16.2944c"
+version: "4.0.19.2979"
 icon: https://raw.githubusercontent.com/getumbrel/umbrel-apps-gallery/refs/heads/master/sonarr/icon.svg
 tagline: Smart PVR for newsgroup and bittorrent users
 description: >-
@@ -27,7 +27,10 @@ gallery:
   - https://raw.githubusercontent.com/getumbrel/umbrel-apps-gallery/master/sonarr/3.jpg
 path: ""
 releaseNotes: >-
-  This is a minor update with bug fixes and improvements.
+  This update brings Sonarr to version 4.0.19.2979:
+    - Fixed issues in parser and metadata handling
+    - Multiple bug fixes and stability improvements
+    - Updated upstream translations and runtime dependencies
 
 
   Full release notes for Sonarr can be found at https://github.com/Sonarr/Sonarr/releases

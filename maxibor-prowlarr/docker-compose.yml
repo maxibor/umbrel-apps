@@ -1,15 +1,13 @@
-version: "3.7"
-
 services:
   app_proxy:
     environment:
       APP_HOST: maxibor-gluetun_server_1
       APP_PORT: 9696
-      #PROXY_AUTH_WHITELIST: /api/*
+      PROXY_AUTH_WHITELIST: /api/*
       PROXY_AUTH_ADD: 'false'
 
   server:
-    image: linuxserver/prowlarr:version-2.3.0.5236@sha256:484784daaf4c081e55c608de256870184d283762e1b64e8105af487b1510fc4a
+    image: linuxserver/prowlarr:version-2.5.2.5491@sha256:2f3d31307beba3ba2dd226d191f5f5c14ee3b4d8b49277c64683f5ed97083179
     network_mode: "container:maxibor-gluetun_server_1"
     environment:
       - PUID=1000
@@ -18,3 +16,4 @@ services:
       - ${APP_DATA_DIR}/data/config:/config
       - ${UMBREL_ROOT}/data/storage/downloads:/downloads
     restart: unless-stopped
+    stop_grace_period: 1m
