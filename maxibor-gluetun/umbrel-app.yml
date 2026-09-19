@@ -4,7 +4,7 @@ name: 1.0 Gluetun VPN
 tagline: Lightweight VPN client with support for multiple providers
 icon: https://raw.githubusercontent.com/MartinMeel/umbrel-app-gallery/main/martinmeel-gluetun/gluetun.svg
 category: networking
-version: "3.41.2"
+version: "3.41.3"
 port: 8000
 description: >-
   Gluetun is a lightweight VPN client written in Go that supports multiple VPN providers
@@ -12,12 +12,12 @@ description: >-
   them to route their traffic through the VPN connection.
   
   
-  This setup is pre-configured for ProtonVPN Wireguard but supports many other providers. Other
-  containers can route their traffic through Gluetun by using its network stack.
+  This setup includes a built-in Web UI dashboard to monitor connection status, view external IP and geolocation, stream logs in real time, and configure provider environment variables dynamically.
   
   
   Key features:
-    - Support for multiple VPN providers (Windscribe, NordVPN, ExpressVPN, CyberGhost, etc.)
+    - Support for multiple VPN providers (Windscribe, NordVPN, ExpressVPN, CyberGhost, ProtonVPN, etc.)
+    - Built-in Web UI Dashboard with real-time connection status & logs streaming
     - Built-in firewall with kill switch
     - DNS over TLS (DoT) support
     - HTTP proxy server
@@ -35,6 +35,14 @@ description: >-
     ⚠️ NOTE: Please ssh into your umbrel or via the settings icon -> Advanced settings -> Terminal (open) to change the exports file.
 
 
+  🔐 WEB UI AUTHENTICATION:
+    The Web UI dashboard at port 8000 is protected with HTTP Basic Authentication.
+    Default credentials:
+      Username: admin
+      Password: admin
+    You can customize your credentials in the exports.sh file (`GLUETUN_USER` and `GLUETUN_PASSWORD`).
+
+
   Logs:  
     ⚠️ NOTE: To follow the logs of the Gluetun container:
     Please ssh into your umbrel or via the settings icon -> Advanced settings -> Terminal (open)
@@ -42,13 +50,13 @@ description: >-
 
 
 releaseNotes: >-
-  Update Gluetun to v3.41.3 with upstream provider and security updates, updated server endpoints, and stability fixes.
+  Update Gluetun image to ghcr.io/maxibor/gluetun:ui-auth with built-in Web UI dashboard and Basic Authentication support.
 submitter: maxibor
 developer: qdm12
-website: https://github.com/qdm12/gluetun
+website: https://github.com/maxibor/gluetun
 dependencies: []
-repo: https://github.com/qdm12/gluetun
-support: https://github.com/qdm12/gluetun/issues
+repo: https://github.com/maxibor/gluetun
+support: https://github.com/maxibor/gluetun/issues
 gallery: []
-defaultUsername: ""
-defaultPassword: ""
+defaultUsername: "admin"
+defaultPassword: "admin"

@@ -1,3 +1,8 @@
+# Web UI Basic Authentication credentials
+export GLUETUN_USER="admin"
+export GLUETUN_PASSWORD="admin"
+
+# CyberGhost VPN credentials and settings
 export CYBERGHOST_USERNAME="PRIVATE_KEY"
 export CYBERGHOST_PASSWORD="PRIVATE_KEY"
 export OPENVPN_CERT="BASE64_ENCODED_CERTIFICATE"

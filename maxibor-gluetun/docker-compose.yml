@@ -1,6 +1,6 @@
 services:
   server:
-    image: qmcgaw/gluetun:v3.41.2@sha256:280809bc6900ed06d6529ad246499103efb31fd80c6327cbfaf90de0b17c3a99
+    image: ghcr.io/maxibor/gluetun:ui-auth@sha256:099159eb4ee9472760c104a258bde430f7f0317fa233a8eca5d65bd59eb681b9
     cap_add:
       - NET_ADMIN
     devices:
@@ -21,9 +21,10 @@ services:
       - OPENVPN_CERT=${OPENVPN_CERT}
       - OPENVPN_KEY=${OPENVPN_KEY}
       - SERVER_COUNTRIES=${SERVER_COUNTRIES}
-      # Enable Control server
-      - HTTP_CONTROL_SERVER_ADDRESS=:8000  # 👈 fixed: = not :
+      # Enable Control server & Web UI
+      - HTTP_CONTROL_SERVER_ADDRESS=:8000
       - HTTP_CONTROL_SERVER_LOG=on
+      - HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE={"auth":"basic","username":"${GLUETUN_USER:-admin}","password":"${GLUETUN_PASSWORD:-admin}"}
       - TZ=Europe/Amsterdam
     restart: unless-stopped
     stop_grace_period: 1m
