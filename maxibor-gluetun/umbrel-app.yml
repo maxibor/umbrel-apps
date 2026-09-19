@@ -5,7 +5,7 @@ tagline: Lightweight VPN client with support for multiple providers
 icon: https://raw.githubusercontent.com/MartinMeel/umbrel-app-gallery/main/martinmeel-gluetun/gluetun.svg
 category: networking
 version: "3.41.3"
-port: 8000
+port: 8005
 description: >-
   Gluetun is a lightweight VPN client written in Go that supports multiple VPN providers
   including ProtonVPN, Windscribe etc. It acts as a VPN gateway for other Docker containers, allowing
@@ -36,7 +36,7 @@ description: >-
 
 
   🔐 WEB UI AUTHENTICATION:
-    The Web UI dashboard at port 8000 is protected with HTTP Basic Authentication.
+    The Web UI dashboard at port 8005 is protected with HTTP Basic Authentication.
     Default credentials:
       Username: admin
       Password: admin
